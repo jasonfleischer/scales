@@ -77,8 +77,8 @@ function setupControls(){
 				option.setAttribute('selected','selected');
 			}
 			option.setAttribute('value', value);
-			option.innerHTML = value;
-			//select.appendChild(option);
+			//option.innerHTML = value;
+			select.appendChild(option);
 		}
 
 		
