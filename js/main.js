@@ -1,5 +1,6 @@
 const log = require("@jasonfleischer/log");
 const pianoKit = require("@jasonfleischer/piano");
+const fretboardKit = require("@jasonfleischer/fretboard");
 const musicKit = require("@jasonfleischer/music-model-kit");
 musicKit.init();
 
@@ -18,8 +19,6 @@ const pianoView = pianoKit({
 	},
 	hover: true
 });
-
-const fretboardKit = require("@jasonfleischer/fretboard");
 
 const fretboardView = fretboardKit({
 	id: 'fretboard',
@@ -60,7 +59,6 @@ init = function() {
 	setupControls();
 	
 }
-init();
 
 function setupControls(){
 	setupNoteTypeSelect();
@@ -77,7 +75,7 @@ function setupControls(){
 				option.setAttribute('selected','selected');
 			}
 			option.setAttribute('value', value);
-			//option.innerHTML = value;
+			option.innerHTML = value;
 			select.appendChild(option);
 		}
 
