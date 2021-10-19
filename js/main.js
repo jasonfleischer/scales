@@ -71,7 +71,7 @@ function setupControls(){
 			let noteType = noteTypes[i];
 			let value = noteType.type;
 			var option = document.createElement('option');
-			if(i == 0) {
+			if(value == model.selectedNote) {
 				option.setAttribute('selected','selected');
 			}
 			option.setAttribute('value', value);
@@ -79,15 +79,42 @@ function setupControls(){
 			select.appendChild(option);
 		}
 
-		
-		//select.value = duration;
-		var selectText = $("type");
+		var selectText = $("note_type");
 		selectText.innerHTML = "Note: " + select.value;
 		select.oninput = function() {
 			model.selectedNote = this.value;
 			selectText.innerHTML = "Note: " + this.value;
 		}
 	}
+
+	setupScaleTypeSelect();
+	function setupScaleTypeSelect() {
+
+		var select = $("scale_type_select");
+		var i;
+		let scaleTypes = musicKit.Scale.TYPE;
+		for (i = 0; i < scaleTypes.length; i++) {
+			let scaleType = scaleTypes[i];
+			let value = scaleType.type;
+			var option = document.createElement('option');
+			if(value == model.selectedsScaleType) {
+				option.setAttribute('selected','selected');
+			}
+			option.setAttribute('value', value);
+			option.innerHTML = value;
+			select.appendChild(option);
+		}
+
+		var selectText = $("scale_type");
+		selectText.innerHTML = "Scale: " + select.value;
+		select.oninput = function() {
+			model.selectedsScaleType = this.value;
+			selectText.innerHTML = "Scale: " + this.value;
+		}
+	}
+
+
+	
 }
 
 kofi = function(){

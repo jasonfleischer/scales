@@ -1,4 +1,4 @@
 model = {
-	selectedsScaleType: {},
-	selectedNote: {}
+	selectedNote: "",
+	selectedsScaleType: ""
 }
