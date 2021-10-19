@@ -1,12 +1,12 @@
 const CACHE_NAME = 'v1';
 const CACHE = [
-        '/synth/index.html',
-        '/synth/css/bundle.css',
-        '/synth/js/bundle.js'
+        '/scale/index.html',
+        '/scale/css/bundle.css',
+        '/scale/js/bundle.js'
       ];
 	
 self.addEventListener('install', function(event) {
-    console.log('synth: install');
+    console.log('scale: install');
     event.waitUntil(
         caches.open(CACHE_NAME).then(function(cache) {
             return cache.addAll(CACHE);
@@ -15,7 +15,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-    console.log('synth: fetch');
+    console.log('scale: fetch');
     event.respondWith(
         caches.open(CACHE_NAME).then(function(cache) {
             return cache.match(event.request).then(function(response) {
@@ -29,7 +29,7 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('activate', function activator(event) {
-    console.log('synth: activate');
+    console.log('scale: activate');
     event.waitUntil(
         caches.keys().then(function(keys) {
             return Promise.all(keys

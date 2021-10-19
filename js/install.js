@@ -3,14 +3,14 @@ let prompt;
 
 if ('serviceWorker' in navigator) {
 	
-  	navigator.serviceWorker.register('/synth/service_worker.js', { scope: '/synth/' }).then(function(reg) {
+  	navigator.serviceWorker.register('/scale/service_worker.js', { scope: '/scale/' }).then(function(reg) {
 
 	    if(reg.installing) {
-	      console.log('synth: Service worker installing');
+	      console.log('scale: Service worker installing');
 	    } else if(reg.waiting) {
-	      console.log('synth: Service worker installed');
+	      console.log('scale: Service worker installed');
 	    } else if(reg.active) {
-	      console.log('synth: Service worker active');
+	      console.log('scale: Service worker active');
 	    }
 
 	}).catch(function(error) { // registration failed

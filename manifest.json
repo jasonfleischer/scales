@@ -1,7 +1,7 @@
 {
-	"short_name": "Synth",
-  	"name": "Synth",
-  	"description": "Synth additive synthesis",
+	"short_name": "Scale",
+  	"name": "Scale",
+  	"description": "Scale Finder",
   	"icons": [
   		{
       		"src": "img/512.png",
