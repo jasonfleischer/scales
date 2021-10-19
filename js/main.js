@@ -71,19 +71,23 @@ function setupControls(){
 		let noteTypes = musicKit.Note.ALL_NOTE_NAME_TYPES
 		for (i = 0; i < noteTypes.length; i++) {
 			let noteType = noteTypes[i];
+			let value = noteType.type;
 			var option = document.createElement('option');
-			option.innerHTML = noteType.type;
+			if(i == 0) {
+				option..setAttribute('selected','selected');
+			}
+			option..setAttribute('value', value);
+			option.innerHTML = value;
 			select.appendChild(option);
-			log.e(noteType)
 		}
 
 		
-		select.value = duration;
+		//select.value = duration;
 		var selectText = $("type");
-		selectText.innerHTML = duration == -1 ? "Note" : "Note: " + duration + "min";
+		selectText.innerHTML = "Note: " + select.value;
 		select.oninput = function() {
-			duration = parseFloat(this.value);
-			selectText.innerHTML = duration == -1 ? "Duration" : "Duration: " + duration + "min";
+			model.selectedNote = this.value;
+			selectText.innerHTML = "Note: " + this.value;
 		}
 	}
 }
