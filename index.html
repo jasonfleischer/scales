@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Scales</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Jason Fleischer">
+	<meta name="description" content="Musical Scale Finder">
+	<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no'>
+	<meta name="theme-color" content="#000"/>
+	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+	<link rel="stylesheet" href="css/bundle.css">
+	<link rel="manifest" href="manifest.json">
+	<link rel="apple-touch-icon" href="img/192.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/180.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="img/167.png">
+</head>
+<body>
+	<header>
+		<div id="page_name" onclick="info()">Scale Finder</div>
+		<button id="kofi_button" onclick="kofi()">
+			<img src="img/kofi.svg" width="25" height="25" alt="Buy Me a Coffee at ko-fi.com" />
+			<span >Support the Developer</span>
+		</button>
+		<button id="info_button" onclick="info()" ><img id="info_button_svg" src="img/info_white.svg" width="16" height="19" alt="Info"/></button>
+	</header>
+	<div id="alert_container">
+		<div id="alert">
+			<div id="alert_header">
+				<h3 id="alert_title"></h3>
+				<button id="dismiss_alert_button" ><img height="16" id="dismiss_close_button_svg" src="img/close_white.svg" alt="Dismiss alert"/></button>
+			</div>
+			<div id="alert_contents"></div>
+		</div>
+	</div>
+	<main>
+		<article>
+			<div id="piano"></div>
+		</article>
+		<article>
+			<div id="oscilloscope_container">
+				<canvas id="oscilloscope"></canvas>
+				<button id="oscilloscope_button" onclick="toggleDrawing(this)">S</button>
+			</div>
+			<br/>
+			<button id="stop" onclick="stop()">Stop</button>
+			<button id="stop_delay" onclick="fadeStop()">Fade Out</button>
+		</article>
+	</main>
+	<aside>
+		<article>
+			<h1>Settings</h1>
+			<table>
+				<tr>
+					<td id="duration"></td>
+					<td><select id="duration_select">
+						<option value="-1" selected="selected">Infinite</option>
+						<option value="1">1 min</option>
+						<option value="5">5 min</option>
+						<option value="10">10 min</option>
+						<option value="15">15 min</option>
+						<option value="20">20 min</option>
+						<option value="30">30 min</option>
+						<option value="45">45 min</option>
+						<option value="60">1 hour</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td><label id="oscillatorType" for="oscillatorTypeRange"></label></td>
+					<td><input type="range" min="0" max="3" value="1" step="1" class="slider" id="oscillatorTypeRange" /></td>
+				</tr>
+				<tr>
+					<td><label id="volume" for="volumeRange"></label></td>
+					<td>
+						<input type="range" min="0" max="1000" value="1000" step="0.000001" class="slider" id="volumeRange" />
+					</td>
+				</tr>
+				<tr>
+					<td><label id="fade" for="fadeRange"></label></td>
+					<td><input type="range" min="0.5" max="30" value="0" step="0.5" class="slider" id="fadeRange" /></td>
+				</tr>
+				
+			</table>
+		</article>		
+		<article>
+			<h1>Tremolo</h1>
+			<table>
+				<tr>
+					<td><label id="bpm" for="bpmRange"></label></td>
+					<td><input type="range" min="25" max="180" value="5" step="0.5" class="slider" id="bpmRange" /></td>
+				</tr>
+				<tr>
+					<td><label id="tremoloMin" for="tremoloMinRange"></label></td>
+					<td><input type="range" min="0" max="100" value="5" step="0.5" class="slider" id="tremoloMinRange" /></td>
+				</tr>
+				<tr>
+					<td><label id="tremoloMax" for="tremoloMaxRange"></label></td>
+					<td><input type="range" min="0" max="100" value="5" step="0.5" class="slider" id="tremoloMaxRange" /></td>
+				</tr>
+				<tr>
+					<td><label for="tremoloVisualizationRange">Visualization</label></td>
+					<td><input type="range" disabled min="0" max="100" value="0" step="0.5" class="slider" id="tremoloVisualizationRange" /></td>
+				</tr>
+			</table>
+		</article>
+		<article>
+			<h1>Harmonics</h1>
+			<div>
+				<button id="P0" onclick="harmonicsPreset0()">P0</button>
+				<button id="P1" onclick="harmonicsPreset1()">P1</button>
+				<button id="P2" onclick="harmonicsPreset2()">P2</button>
+				<button id="P3" onclick="harmonicsPreset3()">P3</button>
+				<button id="P4" onclick="harmonicsPreset4()">P4</button>
+				<button id="P5" onclick="harmonicsPreset5()">P5</button>
+			</div>
+			<table id="harmonics_table"></table>
+		</article>
+		<article></article>
+	</aside>
+	<script src="js/bundle.js"></script>
+</body>
+</html>
