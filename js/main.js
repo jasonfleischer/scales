@@ -93,8 +93,12 @@ function setupControls(){
 		var select = $("scale_type_select");
 		var i;
 		let scaleTypes = musicKit.Scale.TYPE;
-		for (i = 0; i < scaleTypes.length; i++) {
-			let scaleType = scaleTypes[i];
+		//for (i = 0; i < scaleTypes.length; i++) {
+
+		for (const key in scaleTypes) {
+		    console.log(`${key}: ${scaleTypes[key]}`);
+
+			let scaleType = scaleTypes[key];
 			let value = scaleType.type;
 			var option = document.createElement('option');
 			if(value == model.selectedsScaleType) {
