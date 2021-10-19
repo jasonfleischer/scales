@@ -33,28 +33,16 @@
 			<div id="alert_contents"></div>
 		</div>
 	</div>
-
-	<div id="piano"></div>
 	<main>
-		<article>
-			
-		</article>
-		<article>
-			<div id="oscilloscope_container">
-				<canvas id="oscilloscope"></canvas>
-				<button id="oscilloscope_button" onclick="toggleDrawing(this)">S</button>
-			</div>
-			<br/>
-			<button id="stop" onclick="stop()">Stop</button>
-			<button id="stop_delay" onclick="fadeStop()">Fade Out</button>
-		</article>
+		<div id="piano"></div>
+		<div id="fretboard"></div>
 	</main>
 	<aside>
 		<article>
 			<h1>Settings</h1>
 			<table>
 				<tr>
-					<td id="type"></td>
+					<td id="type">Type</td>
 					<td><select id="duration_select">
 						<option value="-1" selected="selected">Infinite</option>
 						<option value="1">1 min</option>
@@ -68,18 +56,18 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td><label id="oscillatorType" for="oscillatorTypeRange"></label></td>
-					<td><input type="range" min="0" max="3" value="1" step="1" class="slider" id="oscillatorTypeRange" /></td>
-				</tr>
-				<tr>
-					<td><label id="volume" for="volumeRange"></label></td>
-					<td>
-						<input type="range" min="0" max="1000" value="1000" step="0.000001" class="slider" id="volumeRange" />
-					</td>
-				</tr>
-				<tr>
-					<td><label id="fade" for="fadeRange"></label></td>
-					<td><input type="range" min="0.5" max="30" value="0" step="0.5" class="slider" id="fadeRange" /></td>
+				<td id="type">Note</td>
+					<td><select id="duration_select">
+						<option value="-1" selected="selected">Infinite</option>
+						<option value="1">1 min</option>
+						<option value="5">5 min</option>
+						<option value="10">10 min</option>
+						<option value="15">15 min</option>
+						<option value="20">20 min</option>
+						<option value="30">30 min</option>
+						<option value="45">45 min</option>
+						<option value="60">1 hour</option>
+					</select></td>
 				</tr>
 				
 			</table>

@@ -4,12 +4,20 @@ storage.load = function(){
 	model.master_volume_percent = storage.get_volume(30);
 };
 
-storage.VOLUME_KEY = "SYNTH_VOLUME_KEY";
-storage.get_volume = function(default_value){
-	return storage.get(storage.VOLUME_KEY, default_value);
+storage.SELECTED_SCALE_TYPE = "SCALE_SELECTED_SCALE_TYPE";
+storage.getSelectedScaleType = function(default_value){
+	return storage.get(storage.SELECTED_SCALE_TYPE, default_value);
 };
-storage.set_volume = function(value){
-	localStorage.setItem(storage.VOLUME_KEY, value);
+storage.setSelectedScaleType = function(value){
+	localStorage.setItem(storage.SELECTED_SCALE_TYPE, value);
+};
+
+storage.SELECTED_NOTE = "SCALE_SELECTED_NOTE";
+storage.getSelectedNote = function(default_value){
+	return storage.get(storage.SELECTED_NOTE, default_value);
+};
+storage.setSelectedNote = function(value){
+	localStorage.setItem(storage.SELECTED_NOTE, value);
 };
 
 storage.get = function(key, default_value) {
