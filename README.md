@@ -1,7 +1,7 @@
-## Synth Webpage
+## Scale Finder Webpage
 
 # Description
-An exploration of JS AudioContext with wavetable & additive synthesis:
+A musical scale finder
 
-[https://jasonfleischer.github.io/synth/](https://jasonfleischer.github.io/synth/)
+[https://jasonfleischer.github.io/synth/](https://jasonfleischer.github.io/scales/)
 
