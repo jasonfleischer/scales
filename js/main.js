@@ -72,7 +72,7 @@ function setupControls(){
 		for (i = 0; i < noteTypes.length; i++) {
 			let noteType = noteTypes[i];
 			var option = document.createElement('option');
-			option.innerHTML = noteType;
+			option.innerHTML = noteType.type;
 			select.appendChild(option);
 			log.e(noteType)
 		}
