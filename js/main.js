@@ -47,7 +47,7 @@ const fretboardView = fretboardKit({
 	});*/
 
 
-
+init();
 init = function() {
 
 	storage.load();
