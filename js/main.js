@@ -47,7 +47,7 @@ const fretboardView = fretboardKit({
 	});*/
 
 
-init();
+
 init = function() {
 
 	storage.load();
@@ -60,6 +60,7 @@ init = function() {
 	setupControls();
 	
 }
+init();
 
 function setupControls(){
 	//setupDurationSelect();
