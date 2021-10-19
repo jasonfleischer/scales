@@ -65,10 +65,21 @@ init();
 function setupControls(){
 	//setupDurationSelect();
 	function setupDurationSelect() {
-		var select = $("duration_select");
+
+		var select = $("note_type_select");
+		var i;
+		let noteTypes = musicKit.Note.ALL_NOTE_NAME_TYPES
+		for (i = 0; i < noteTypes.length; i++) {
+			let noteType = noteTypes[i];
+			var option = document.createElement('option');
+			option.innerHTML = noteType;
+			select.appendChild(option);
+		}
+
+		
 		select.value = duration;
-		var selectText = $("duration");
-		selectText.innerHTML = duration == -1 ? "Duration" : "Duration: " + duration + "min";
+		var selectText = $("type");
+		selectText.innerHTML = duration == -1 ? "Note" : "Note: " + duration + "min";
 		select.oninput = function() {
 			duration = parseFloat(this.value);
 			selectText.innerHTML = duration == -1 ? "Duration" : "Duration: " + duration + "min";
