@@ -19,6 +19,19 @@ const pianoView = pianoKit({
 	hover: true
 });
 
+const fretboardKit = require("@jasonfleischer/fretboard");
+
+const fretboardView = fretboardKit({
+	id: 'fretboard',
+	width: 800,
+	onClick: function(note, isOn) {
+		
+	},
+	hover: true,
+	showLabels: false,
+	darkMode: true
+});
+
 // add a midi listener
 /*new musicKit.MidiListener(
 	function (midiValue, channel, velocity) { // note on
