@@ -116,9 +116,6 @@ function setupControls(){
 			selectText.innerHTML = "Scale: " + this.value;
 		}
 	}
-
-
-	
 }
 
 kofi = function(){
@@ -128,7 +125,7 @@ kofi = function(){
 info = function(){
 	information.showAlert();
 }
-function dismissInfo(){
+dismissInfo = function(){
 	information.dismissAlert();
 }
 
