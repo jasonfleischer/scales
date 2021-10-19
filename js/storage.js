@@ -1,7 +1,8 @@
 storage = {};
 
 storage.load = function(){
-	model.master_volume_percent = storage.get_volume(30);
+	model.selectedsScaleType = storage.getSelectedScaleType(30);
+	model.selectedNote = storage.getSelectedNote(30);
 };
 
 storage.SELECTED_SCALE_TYPE = "SCALE_SELECTED_SCALE_TYPE";
