@@ -98,8 +98,8 @@ function setupControls(){
 		for (const key in scaleTypes) {
 		    console.log(`${key}: ${scaleTypes[key]}`);
 
-			let scaleType = scaleTypes[key];
-			let value = scaleType.type;
+			
+			let value = scaleTypes[key];
 			var option = document.createElement('option');
 			if(value == model.selectedsScaleType) {
 				option.setAttribute('selected','selected');
