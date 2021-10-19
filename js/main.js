@@ -45,7 +45,16 @@ const fretboardView = fretboardKit({
 		pianoView.clearNote(note);
 	});*/
 
+kofi = function(){
+	window.open("https://ko-fi.com/jasonfleischer", "_blank");
+}
 
+info = function(){
+	information.showAlert();
+}
+dismissInfo = function(){
+	information.dismissAlert();
+}
 
 init = function() {
 
@@ -79,11 +88,11 @@ function setupControls(){
 			select.appendChild(option);
 		}
 
-		var selectText = $("note_type");
-		selectText.innerHTML = "Note: " + select.value;
+		//var selectText = $("note_type");
+		//selectText.innerHTML = "Note: " + select.value;
 		select.oninput = function() {
 			model.selectedNote = this.value;
-			selectText.innerHTML = "Note: " + this.value;
+			//selectText.innerHTML = "Note: " + this.value;
 		}
 	}
 
@@ -93,7 +102,6 @@ function setupControls(){
 		var select = $("scale_type_select");
 		var i;
 		let scaleTypes = musicKit.Scale.TYPE;
-		//for (i = 0; i < scaleTypes.length; i++) {
 
 		for (const key in scaleTypes) {
 		    console.log(`${key}: ${scaleTypes[key]}`);
@@ -109,24 +117,30 @@ function setupControls(){
 			select.appendChild(option);
 		}
 
-		var selectText = $("scale_type");
-		selectText.innerHTML = "Scale: " + select.value;
+		//var selectText = $("scale_type");
+		//selectText.innerHTML = "Scale: " + select.value;
 		select.oninput = function() {
 			model.selectedsScaleType = this.value;
-			selectText.innerHTML = "Scale: " + this.value;
+			//selectText.innerHTML = "Scale: " + this.value;
 		}
+	}
+
+	setupRandomButton()
+	function setupRandomButton(){
+		$("random_button").addEventListener("click", function(event){
+			drawScales();
+		});
 	}
 }
 
-kofi = function(){
-	window.open("https://ko-fi.com/jasonfleischer", "_blank");
-}
+function drawScales() {
 
-info = function(){
-	information.showAlert();
-}
-dismissInfo = function(){
-	information.dismissAlert();
+
+	let midiValue = 62 // D4
+	let note = musicKit.all_notes[midiValue];
+	let scale = new musicKit.Scale(note, musicKit.Scale.TYPE.Aeolian); // Dm scale
+	fretboardView.drawScale(scale);
+	pianoView.drawScale(scale);
 }
 
 
