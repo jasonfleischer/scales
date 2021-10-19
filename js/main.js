@@ -74,9 +74,9 @@ function setupControls(){
 			let value = noteType.type;
 			var option = document.createElement('option');
 			if(i == 0) {
-				option..setAttribute('selected','selected');
+				option.setAttribute('selected','selected');
 			}
-			option..setAttribute('value', value);
+			option.setAttribute('value', value);
 			option.innerHTML = value;
 			select.appendChild(option);
 		}
