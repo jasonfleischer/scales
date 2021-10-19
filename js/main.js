@@ -68,7 +68,7 @@ function setupControls(){
 
 		var select = $("note_type_select");
 		var i;
-		let noteTypes = musicKit.Note.ALL_NOTE_NAME_TYPES
+		let noteTypes = musicKit.Note.ALL_NOTE_NAME_TYPES;
 		for (i = 0; i < noteTypes.length; i++) {
 			let noteType = noteTypes[i];
 			let value = noteType.type;
@@ -78,7 +78,7 @@ function setupControls(){
 			}
 			option.setAttribute('value', value);
 			option.innerHTML = value;
-			select.appendChild(option);
+			//select.appendChild(option);
 		}
 
 		
