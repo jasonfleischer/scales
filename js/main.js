@@ -63,8 +63,8 @@ init = function() {
 init();
 
 function setupControls(){
-	//setupDurationSelect();
-	function setupDurationSelect() {
+	setupNoteTypeSelect();
+	function setupNoteTypeSelect() {
 
 		var select = $("note_type_select");
 		var i;
@@ -74,6 +74,7 @@ function setupControls(){
 			var option = document.createElement('option');
 			option.innerHTML = noteType;
 			select.appendChild(option);
+			log.e(noteType)
 		}
 
 		
