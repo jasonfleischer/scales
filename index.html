@@ -33,9 +33,11 @@
 			<div id="alert_contents"></div>
 		</div>
 	</div>
+
+	<div id="piano"></div>
 	<main>
 		<article>
-			<div id="piano"></div>
+			
 		</article>
 		<article>
 			<div id="oscilloscope_container">
@@ -52,7 +54,7 @@
 			<h1>Settings</h1>
 			<table>
 				<tr>
-					<td id="duration"></td>
+					<td id="type"></td>
 					<td><select id="duration_select">
 						<option value="-1" selected="selected">Infinite</option>
 						<option value="1">1 min</option>
@@ -82,39 +84,8 @@
 				
 			</table>
 		</article>		
-		<article>
-			<h1>Tremolo</h1>
-			<table>
-				<tr>
-					<td><label id="bpm" for="bpmRange"></label></td>
-					<td><input type="range" min="25" max="180" value="5" step="0.5" class="slider" id="bpmRange" /></td>
-				</tr>
-				<tr>
-					<td><label id="tremoloMin" for="tremoloMinRange"></label></td>
-					<td><input type="range" min="0" max="100" value="5" step="0.5" class="slider" id="tremoloMinRange" /></td>
-				</tr>
-				<tr>
-					<td><label id="tremoloMax" for="tremoloMaxRange"></label></td>
-					<td><input type="range" min="0" max="100" value="5" step="0.5" class="slider" id="tremoloMaxRange" /></td>
-				</tr>
-				<tr>
-					<td><label for="tremoloVisualizationRange">Visualization</label></td>
-					<td><input type="range" disabled min="0" max="100" value="0" step="0.5" class="slider" id="tremoloVisualizationRange" /></td>
-				</tr>
-			</table>
-		</article>
-		<article>
-			<h1>Harmonics</h1>
-			<div>
-				<button id="P0" onclick="harmonicsPreset0()">P0</button>
-				<button id="P1" onclick="harmonicsPreset1()">P1</button>
-				<button id="P2" onclick="harmonicsPreset2()">P2</button>
-				<button id="P3" onclick="harmonicsPreset3()">P3</button>
-				<button id="P4" onclick="harmonicsPreset4()">P4</button>
-				<button id="P5" onclick="harmonicsPreset5()">P5</button>
-			</div>
-			<table id="harmonics_table"></table>
-		</article>
+		
+		
 		<article></article>
 	</aside>
 	<script src="js/bundle.js"></script>
