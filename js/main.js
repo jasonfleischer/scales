@@ -153,6 +153,7 @@ function setupControls(){
 			model.selected_scale_type = scale_type;
 
 			$("note_type_select").value = midiValue;
+			$("scale_type_select").value = scale_type;
 			drawScales();
 		});
 	}
