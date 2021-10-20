@@ -151,6 +151,8 @@ function setupControls(){
 			});
 			let scale_type = scaleTypes[randomInteger(0, scaleTypes.length - 1)];
 			model.selected_scale_type = scale_type;
+
+			$("note_type_select").value = midiValue;
 			drawScales();
 		});
 	}
