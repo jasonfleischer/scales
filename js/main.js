@@ -8,14 +8,19 @@ const pianoView = pianoKit({
 	id: 'piano',
 	width: 800,
 	onClick: function(note, isOn) {
-		if(isOn) {
+
+
+		model.selected_root_note = parseInt(note.midiValue);
+		drawScales();
+
+		/*if(isOn) {
 			let color = note.note_name.is_sharp_or_flat ? "#777": "#aaa";
 			startNote(note.frequency);
 			pianoView.drawNoteWithColor(note, color);
 		} else {
 			startNote(note.frequency);
 			pianoView.clearNote(note);
-		}
+		}*/
 	},
 	hover: true
 });
@@ -24,7 +29,8 @@ const fretboardView = fretboardKit({
 	id: 'fretboard',
 	width: 800,
 	onClick: function(note, isOn) {
-		
+		model.selected_root_note = parseInt(note.midiValue);
+		drawScales();
 	},
 	hover: true,
 	showLabels: false,
