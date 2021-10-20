@@ -190,7 +190,7 @@ function drawScales() {
 	let note = musicKit.all_notes[model.selected_root_note];
 	let scale = new musicKit.Scale(note, model.selected_scale_type);
 
-	$("scale_structure").innerHTML = scale.getLabels();
+	$("scale_structure").innerHTML = scale.getLabels().toString().replace(',', '-');
 	fretboardView.drawScale(scale);
 	pianoView.drawScale(scale);
 }
