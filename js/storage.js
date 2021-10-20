@@ -2,7 +2,7 @@ storage = {};
 
 storage.load = function(){
 	model.selected_root_note = storage.getSelectedNote(60);
-	model.selected_scale_type = storage.getSelectedScaleType("minor pentatonic");
+	model.selected_scale_type = storage.getSelectedScaleType("major pentatonic");
 };
 
 storage.SELECTED_NOTE = "SCALE_SELECTED_NOTE";
