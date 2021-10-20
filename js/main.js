@@ -82,7 +82,9 @@ init = function() {
 
 	//model.note_range = musicKit.guitar_range;
 	setupControls();
+	window_resized_end();
 	drawScales();
+
 }
 
 function setupControls(){
@@ -157,6 +159,35 @@ function setupControls(){
 			drawScales();
 		});
 	}
+}
+
+
+// resize
+var window_resize_start_event_occured = false;
+var resized_timer;
+window.onresize = function(){
+	clearTimeout(resized_timer);
+	resized_timer = setTimeout(window_resized_end, 200);
+	if(!window_resize_start_event_occured) {
+		window_resized_start();
+		window_resize_start_event_occured = true;
+	}
+};
+
+function window_resized_start(){
+	dismissInfo();	
+}
+
+function window_resized_end(){
+
+	window_resize_start_event_occured = false;
+
+	let contentWidth = document.body.clientWidth;
+
+	let fretboardPaddingLeftRight = 34;
+	fretboardView.resize(Math.min(contentWidth-fretboardPaddingLeftRight, 1000));
+	let pianoPaddingLeftRight = 30;
+	pianoView.resize(Math.min(contentWidth-pianoPaddingLeftRight, 1000));
 }
 
 function drawScales() {
