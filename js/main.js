@@ -11,7 +11,7 @@ const pianoView = pianoKit({
 
 		//model.selected_root_note = note.midi_value;
 
-		$("note_type_select").value=note.midi_value;
+		$("note_type_select").value = note.midi_value;
 		//drawScales();
 	},
 	hover: true
@@ -126,7 +126,7 @@ function setupControls(){
 	function setupRandomButton(){
 		$("random_button").addEventListener("click", function(event){
 
-			let midiValue = randomInteger(model.note_range.min, model.note_range.max);
+			let midiValue = randomInteger(60, 71);
 			let note = musicKit.all_notes[midiValue];
 			model.selected_root_note = note.midi_value;
 
