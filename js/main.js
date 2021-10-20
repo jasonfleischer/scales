@@ -11,7 +11,7 @@ const pianoView = pianoKit({
 
 		//model.selected_root_note = note.midi_value;
 
-		$("scale_type_select").value=note.midi_value;
+		$("note_type_select").value=note.midi_value;
 		//drawScales();
 	},
 	hover: true
