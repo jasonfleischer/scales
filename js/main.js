@@ -9,8 +9,10 @@ const pianoView = pianoKit({
 	width: 800,
 	onClick: function(note, isOn) {
 
-		model.selected_root_note = note.midi_value;
-		drawScales();
+		//model.selected_root_note = note.midi_value;
+
+		$("scale_type_select").value=note.midi_value;
+		//drawScales();
 	},
 	hover: true
 });
