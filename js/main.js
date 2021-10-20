@@ -80,7 +80,7 @@ init = function() {
 
 	//model.note_range = musicKit.guitar_range;
 	setupControls();
-	window_resized_end();
+	windowResizedEnd();
 	drawScales();
 
 }
@@ -165,18 +165,16 @@ var window_resize_start_event_occured = false;
 var resized_timer;
 window.onresize = function(){
 	clearTimeout(resized_timer);
-	resized_timer = setTimeout(window_resized_end, 200);
+	resized_timer = setTimeout(windowResizedEnd, 200);
 	if(!window_resize_start_event_occured) {
-		window_resized_start();
+		windowResizedStart();
 		window_resize_start_event_occured = true;
 	}
-};
-
-function window_resized_start(){
+}
+function windowResizedStart(){
 	dismissInfo();	
 }
-
-function window_resized_end(){
+function windowResizedEnd(){
 
 	window_resize_start_event_occured = false;
 
