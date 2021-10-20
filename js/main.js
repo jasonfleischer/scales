@@ -116,6 +116,8 @@ function setupControls(){
 
 		select.oninput = function() {
 			model.selected_scale_type = this.value;
+
+			//drawScales()
 		}
 	}
 
@@ -125,18 +127,20 @@ function setupControls(){
 
 			let midiValue = randomInteger(model.note_range.min, model.note_range.max);
 			let note = musicKit.all_notes[midiValue];
+			model.selected_root_note = note.name.type;
 
 			let scaleTypes = Object.keys(musicKit.Scale.TYPE).map(function(key){
     			return musicKit.Scale.TYPE[key];
 			});
-			let scale_type = scaleTypes[randomInteger(0, scaleTypes.length - 1)];//musicKit.Scale.TYPE.Aeolian;
+			let scale_type = scaleTypes[randomInteger(0, scaleTypes.length - 1)];
+			model.selected_scale_type = scale_type;
 			drawScales(note, scale_type);
 		});
 	}
 }
 
 function drawScales(note, scale_type) {
-	let scale = new musicKit.Scale(note, scale_type); // Dm scale
+	let scale = new musicKit.Scale(note, scale_type);
 	fretboardView.drawScale(scale);
 	pianoView.drawScale(scale);
 }
