@@ -67,7 +67,7 @@ init = function() {
 	}
 
 
-	model.note_range = musicKit.piano_range;
+	model.note_range = musicKit.guitar_range;
 	setupControls();
 	
 }
@@ -103,8 +103,6 @@ function setupControls(){
 		let scaleTypes = musicKit.Scale.TYPE;
 
 		for (const key in scaleTypes) {
-		    console.log(`${key}: ${scaleTypes[key]}`);
-
 			
 			let value = scaleTypes[key];
 			var option = document.createElement('option');
@@ -125,9 +123,11 @@ function setupControls(){
 	function setupRandomButton(){
 		$("random_button").addEventListener("click", function(event){
 
-			let midiValue = randomInteger(model.note_range.min, model.note_range.max)//62 // D4
+			let midiValue = randomInteger(model.note_range.min, model.note_range.max);
 			let note = musicKit.all_notes[midiValue];
-			let scale_type = musicKit.Scale.TYPE.Aeolian;
+
+			let scaleTypes = musicKit.Scale.TYPE.values;
+			let scale_type = scaleTypes[randomInteger(0, scaleTypes.length - 1)];//musicKit.Scale.TYPE.Aeolian;
 			drawScales(note, scale_type);
 		});
 	}
