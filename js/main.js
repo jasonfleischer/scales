@@ -68,6 +68,7 @@ init = function() {
 
 	model.note_range = musicKit.guitar_range;
 	setupControls();
+	drawScales();
 }
 
 function setupControls(){
