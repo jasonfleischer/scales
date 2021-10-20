@@ -10,18 +10,18 @@ const pianoView = pianoKit({
 	onClick: function(note, isOn) {
 
 		let map = {
-			musicKit.Note.Name.TYPE.C: 60,
-			musicKit.Note.Name.TYPE.C_sharp: 61,
-			musicKit.Note.Name.TYPE.D: 62,
-			musicKit.Note.Name.TYPE.D_sharp: 63,
-			musicKit.Note.Name.TYPE.E: 64,
-			musicKit.Note.Name.TYPE.F: 65,
-			musicKit.Note.Name.TYPE.F_sharp: 66,
-			musicKit.Note.Name.TYPE.G: 67,
-			musicKit.Note.Name.TYPE.G_sharp: 68,
-			musicKit.Note.Name.TYPE.A: 69,
-			musicKit.Note.Name.TYPE.A_sharp: 70,
-			musicKit.Note.Name.TYPE.B: 71
+			"C": 60,
+			"C# / Db": 61,
+			"D": 62,
+			"D# / Eb": 63,
+			"E": 64,
+			"F": 65,
+			"F# / Gb": 66,
+			"G": 67,
+			"G# / Ab": 68,
+			"A": 69,
+			"A# / Bb": 70,
+			"B": 71
 		};
 
 		let midi_value = map[note.note_name.type];
