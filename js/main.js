@@ -93,7 +93,11 @@ function setupControls(){
 			select.appendChild(option);
 		}
 		select.oninput = function() {
-			model.selected_root_note = this.value;
+			model.selected_root_note = parseInt(this.value);
+
+			let note = musicKit.all_notes[model.selected_root_note];
+			let scale_type = musicKit.Scale.TYPE.Aeolian;
+			drawScales(note, scale_type);
 		}
 	}
 
