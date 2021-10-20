@@ -1,8 +1,8 @@
 storage = {};
 
 storage.load = function(){
-	model.selectedNote = storage.getSelectedNote("");
-	model.selectedsScaleType = storage.getSelectedScaleType("");
+	model.selected_root_note = storage.getSelectedNote("");
+	model.selected_scale_type = storage.getSelectedScaleType("");
 };
 
 storage.SELECTED_NOTE = "SCALE_SELECTED_NOTE";

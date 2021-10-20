@@ -80,19 +80,15 @@ function setupControls(){
 			let noteType = noteTypes[i];
 			let value = noteType.type;
 			var option = document.createElement('option');
-			if(value == model.selectedNote) {
+			if(value == model.selected_root_note) {
 				option.setAttribute('selected','selected');
 			}
 			option.setAttribute('value', value);
 			option.innerHTML = value;
 			select.appendChild(option);
 		}
-
-		//var selectText = $("note_type");
-		//selectText.innerHTML = "Note: " + select.value;
 		select.oninput = function() {
-			model.selectedNote = this.value;
-			//selectText.innerHTML = "Note: " + this.value;
+			model.selected_root_note = this.value;
 		}
 	}
 
@@ -109,7 +105,7 @@ function setupControls(){
 			
 			let value = scaleTypes[key];
 			var option = document.createElement('option');
-			if(value == model.selectedsScaleType) {
+			if(value == model.selected_scale_type) {
 				option.setAttribute('selected','selected');
 			}
 			option.setAttribute('value', value);
@@ -117,11 +113,8 @@ function setupControls(){
 			select.appendChild(option);
 		}
 
-		//var selectText = $("scale_type");
-		//selectText.innerHTML = "Scale: " + select.value;
 		select.oninput = function() {
-			model.selectedsScaleType = this.value;
-			//selectText.innerHTML = "Scale: " + this.value;
+			model.selected_scale_type = this.value;
 		}
 	}
 
