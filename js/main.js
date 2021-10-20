@@ -4,28 +4,26 @@ const fretboardKit = require("@jasonfleischer/fretboard");
 const musicKit = require("@jasonfleischer/music-model-kit");
 musicKit.init();
 
+let note_name_to_midi_value_map = {
+	"C": 60,
+	"C# / Db": 61,
+	"D": 62,
+	"D# / Eb": 63,
+	"E": 64,
+	"F": 65,
+	"F# / Gb": 66,
+	"G": 67,
+	"G# / Ab": 68,
+	"A": 69,
+	"A# / Bb": 70,
+	"B": 71
+};
+
 const pianoView = pianoKit({
 	id: 'piano',
 	width: 800,
 	onClick: function(note, isOn) {
-
-		let map = {
-			"C": 60,
-			"C# / Db": 61,
-			"D": 62,
-			"D# / Eb": 63,
-			"E": 64,
-			"F": 65,
-			"F# / Gb": 66,
-			"G": 67,
-			"G# / Ab": 68,
-			"A": 69,
-			"A# / Bb": 70,
-			"B": 71
-		};
-
-		let midi_value = map[note.note_name.type];
-
+		let midi_value = note_name_to_midi_value_map[note.note_name.type];
 		$("note_type_select").value = midi_value;
 		model.selected_root_note = midi_value;
 		drawScales();
@@ -37,7 +35,9 @@ const fretboardView = fretboardKit({
 	id: 'fretboard',
 	width: 800,
 	onClick: function(note, isOn) {
-		model.selected_root_note = note.midi_value;
+		let midi_value = note_name_to_midi_value_map[note.note_name.type];
+		$("note_type_select").value = midi_value;
+		model.selected_root_note = midi_value;
 		drawScales();
 	},
 	hover: true,
