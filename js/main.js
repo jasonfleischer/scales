@@ -10,8 +10,8 @@ const pianoView = pianoKit({
 	onClick: function(note, isOn) {
 
 
-		model.selected_root_note = note.midiValue;
-		log.e(note.midiValue)
+		model.selected_root_note = note.midi_value;
+		log.e(note.midi_value)
 		drawScales();
 
 		/*if(isOn) {
@@ -30,8 +30,8 @@ const fretboardView = fretboardKit({
 	id: 'fretboard',
 	width: 800,
 	onClick: function(note, isOn) {
-		model.selected_root_note = note.midiValue;
-		log.e(note.midiValue)
+		model.selected_root_note = note.midi_value;
+		log.e(note.midi_value)
 		drawScales();
 	},
 	hover: true,
