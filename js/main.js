@@ -21,7 +21,6 @@ let note_name_to_midi_value_map = {
 
 const pianoView = pianoKit({
 	id: 'piano',
-	width: 800,
 	onClick: function(note, isOn) {
 		let midi_value = note_name_to_midi_value_map[note.note_name.type];
 		$("note_type_select").value = midi_value;
@@ -33,7 +32,6 @@ const pianoView = pianoKit({
 
 const fretboardView = fretboardKit({
 	id: 'fretboard',
-	width: 800,
 	onClick: function(note, isOn) {
 		let midi_value = note_name_to_midi_value_map[note.note_name.type];
 		$("note_type_select").value = midi_value;
