@@ -64,7 +64,7 @@ select {
 
 button {
 	min-width: 36px;
-	margin-top: 7px;
+	margin-top: 3px;
 	margin-bottom: 3px;
 }
 
@@ -85,6 +85,9 @@ strong {
 #piano {
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+#random_button {
+	margin-top: 8px;
 }
 
 #ios_install_instructions p {
