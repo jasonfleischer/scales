@@ -9,10 +9,26 @@ const pianoView = pianoKit({
 	width: 800,
 	onClick: function(note, isOn) {
 
-		//model.selected_root_note = note.midi_value;
+		let map = {
+			musicKit.Note.Name.C: 60,
+			musicKit.Note.Name.C_sharp: 61,
+			musicKit.Note.Name.D: 62,
+			musicKit.Note.Name.D_sharp: 63,
+			musicKit.Note.Name.E: 64,
+			musicKit.Note.Name.F: 65,
+			musicKit.Note.Name.F_sharp: 66,
+			musicKit.Note.Name.G: 67,
+			musicKit.Note.Name.G_sharp: 68,
+			musicKit.Note.Name.A: 69,
+			musicKit.Note.Name.A_sharp: 70,
+			musicKit.Note.Name.B: 71
+		};
 
-		$("note_type_select").value = 60//note.midi_value;
-		//drawScales();
+		let midi_value = map[note.note_name.type];
+
+		$("note_type_select").value = midi_value;
+		model.selected_root_note = midi_value;
+		drawScales();
 	},
 	hover: true
 });
@@ -64,7 +80,7 @@ init = function() {
 		install.showAlert();
 	}
 
-	model.note_range = musicKit.guitar_range;
+	//model.note_range = musicKit.guitar_range;
 	setupControls();
 	drawScales();
 }
