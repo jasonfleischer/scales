@@ -88,9 +88,10 @@ strong {
 	margin-bottom: 10px;
 }
 #random_button {
-	margin-top: 11px;
+	margin-top: 5px;
 	padding-left: 15px;
 	padding-right: 15px;
+	height: 36px;
 }
 
 #ios_install_instructions p {
