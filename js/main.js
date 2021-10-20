@@ -126,7 +126,9 @@ function setupControls(){
 			let midiValue = randomInteger(model.note_range.min, model.note_range.max);
 			let note = musicKit.all_notes[midiValue];
 
-			let scaleTypes = musicKit.Scale.TYPE.values();
+			let scaleTypes = Object.keys(musicKit.Scale.TYPE).map(function(key){
+    			return musicKit.Scale.TYPE[key];
+			});
 			let scale_type = scaleTypes[randomInteger(0, scaleTypes.length - 1)];//musicKit.Scale.TYPE.Aeolian;
 			drawScales(note, scale_type);
 		});
