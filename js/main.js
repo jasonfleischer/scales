@@ -65,6 +65,9 @@ init = function() {
 	if (isSafariMobile && !isFromHomeScreen()){
 		install.showAlert();
 	}
+
+
+	model.note_range = musicKit.piano_range;
 	setupControls();
 	
 }
@@ -121,17 +124,17 @@ function setupControls(){
 	setupRandomButton()
 	function setupRandomButton(){
 		$("random_button").addEventListener("click", function(event){
-			drawScales();
+
+			let midiValue = randomInteger(model.note_range.min, model.note_range.max)//62 // D4
+			let note = musicKit.all_notes[midiValue];
+			let scale_type = musicKit.Scale.TYPE.Aeolian;
+			drawScales(note, scale_type);
 		});
 	}
 }
 
-function drawScales() {
-
-
-	let midiValue = 62 // D4
-	let note = musicKit.all_notes[midiValue];
-	let scale = new musicKit.Scale(note, musicKit.Scale.TYPE.Aeolian); // Dm scale
+function drawScales(note, scale_type) {
+	let scale = new musicKit.Scale(note, scale_type); // Dm scale
 	fretboardView.drawScale(scale);
 	pianoView.drawScale(scale);
 }
