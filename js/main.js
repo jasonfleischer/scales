@@ -66,10 +66,8 @@ init = function() {
 		install.showAlert();
 	}
 
-
 	model.note_range = musicKit.guitar_range;
 	setupControls();
-	
 }
 
 function setupControls(){
@@ -95,9 +93,9 @@ function setupControls(){
 		select.oninput = function() {
 			model.selected_root_note = parseInt(this.value);
 
-			let note = musicKit.all_notes[model.selected_root_note];
-			let scale_type = musicKit.Scale.TYPE.Aeolian;
-			drawScales(note, scale_type);
+			//let note = musicKit.all_notes[model.selected_root_note];
+			//let scale_type = musicKit.Scale.TYPE.Aeolian;
+			drawScales();
 		}
 	}
 
@@ -124,6 +122,10 @@ function setupControls(){
 			model.selected_scale_type = this.value;
 
 			//drawScales()
+
+			//let note = musicKit.all_notes[model.selected_root_note];
+			model.selected_scale_type = this.type;
+			drawScales();
 		}
 	}
 
@@ -133,20 +135,21 @@ function setupControls(){
 
 			let midiValue = randomInteger(model.note_range.min, model.note_range.max);
 			let note = musicKit.all_notes[midiValue];
-			model.selected_root_note = note.name.type;
+			model.selected_root_note = note.midi_value;
 
 			let scaleTypes = Object.keys(musicKit.Scale.TYPE).map(function(key){
     			return musicKit.Scale.TYPE[key];
 			});
 			let scale_type = scaleTypes[randomInteger(0, scaleTypes.length - 1)];
 			model.selected_scale_type = scale_type;
-			drawScales(note, scale_type);
+			drawScales();
 		});
 	}
 }
 
-function drawScales(note, scale_type) {
-	let scale = new musicKit.Scale(note, scale_type);
+function drawScales() {
+	let note = musicKit.all_notes[model.selected_root_note];
+	let scale = new musicKit.Scale(note, model.selected_scale_type);
 	fretboardView.drawScale(scale);
 	pianoView.drawScale(scale);
 }
