@@ -85,7 +85,9 @@ strong {
 
 #piano {
 	margin-top: 10px;
-	margin-bottom: 10px;
+}
+#fretboard {
+	margin-top: 10px;
 }
 #random_button {
 	margin-top: 6px;
