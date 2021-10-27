@@ -97,7 +97,7 @@ function setupControls(){
 			let noteType = noteTypes[i];
 			let value = noteType.type;
 			var option = document.createElement('option');
-			if(value == model.selected_root_note) {
+			if(midi_value == model.selected_root_note) {
 				option.setAttribute('selected','selected');
 			}
 			option.setAttribute('value', midi_value);
