@@ -25,7 +25,7 @@ const pianoView = pianoKit({
 		let midi_value = note_name_to_midi_value_map[note.note_name.type];
 		$("note_type_select").value = midi_value;
 		model.selected_root_note = midi_value;
-		drawScales();
+		updateUI();
 	},
 	hover: true
 });
@@ -36,7 +36,7 @@ const fretboardView = fretboardKit({
 		let midi_value = note_name_to_midi_value_map[note.note_name.type];
 		$("note_type_select").value = midi_value;
 		model.selected_root_note = midi_value;
-		drawScales();
+		updateUI();
 	},
 	hover: true,
 	showLabels: false,
@@ -81,7 +81,7 @@ init = function() {
 	//model.note_range = musicKit.guitar_range;
 	setupControls();
 	windowResizedEnd();
-	drawScales();
+	updateUI();
 
 }
 
@@ -107,8 +107,8 @@ function setupControls(){
 		}
 		select.oninput = function() {
 			model.selected_root_note = parseInt(this.value);
-
-			drawScales();
+			storage.setSelectedNote(model.selected_root_note);
+			updateUI();
 		}
 	}
 
@@ -133,8 +133,8 @@ function setupControls(){
 
 		select.oninput = function() {
 			model.selected_scale_type = this.value;
-
-			drawScales();
+			storage.setSelectedScaleType(model.selected_scale_type);
+			updateUI();
 		}
 	}
 
@@ -154,7 +154,10 @@ function setupControls(){
 
 			$("note_type_select").value = midiValue;
 			$("scale_type_select").value = scale_type;
-			drawScales();
+
+			storage.setSelectedNote(midiValue);
+			storage.setSelectedScaleType(scale_type);
+			updateUI();
 		});
 	}
 }
@@ -186,7 +189,7 @@ function windowResizedEnd(){
 	pianoView.resize(Math.min(contentWidth-pianoPaddingLeftRight, 1000));
 }
 
-function drawScales() {
+function updateUI() {
 	let note = musicKit.all_notes[model.selected_root_note];
 	let scale = new musicKit.Scale(note, model.selected_scale_type);
 
