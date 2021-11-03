@@ -3,7 +3,7 @@ let prompt;
 
 if ('serviceWorker' in navigator) {
 	
-  	navigator.serviceWorker.register('/scale/service_worker.js', { scope: '/scale/' }).then(function(reg) {
+  	navigator.serviceWorker.register('/scales/service_worker.js', { scope: '/scales/' }).then(function(reg) {
 
 	    if(reg.installing) {
 	      console.log('scale: Service worker installing');

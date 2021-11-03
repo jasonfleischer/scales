@@ -30,7 +30,7 @@
   	],
 	"display": "standalone",
 	"orientation": "portrait",
-	"start_url": "/synth/?from=homescreen",
+	"start_url": "/scales/?from=homescreen",
 	"theme_color": "#000000",
 	"background_color": "#ffffff"
 
