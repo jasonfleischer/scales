@@ -1,8 +1,8 @@
 const CACHE_NAME = 'v1';
 const CACHE = [
-        '/scale/index.html',
-        '/scale/css/bundle.css',
-        '/scale/js/bundle.js'
+        '/scales/index.html',
+        '/scales/css/bundle.css',
+        '/scales/js/bundle.js'
       ];
 	
 self.addEventListener('install', function(event) {
