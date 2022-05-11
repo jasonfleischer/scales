@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@jasonfleischer/fretboard": "^1.0.4",
-    "@jasonfleischer/piano": "^1.0.10"
+    "@jasonfleischer/fretboard": "^1.0.0",
+    "@jasonfleischer/piano": "^1.0.0"
   }
 }
