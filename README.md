@@ -1,6 +1,6 @@
-## Scale Finder Webpage
+# Scale Finder Webpage
 
-# Description
+### Description
 A musical scale finder
 
 [https://jasonfleischer.github.io/scales/](https://jasonfleischer.github.io/scales/)
