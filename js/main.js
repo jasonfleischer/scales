@@ -260,6 +260,7 @@ function updateUI() {
 	
 	document.getElementById("show_guitar_labels_checkbox").checked = model.show_guitar_labels;
 	fretboardView.show_labels = model.show_guitar_labels;
+	document.getElementById("show_guitar_labels").style.display = model.show_guitar ? 'block': 'none';
 
 	fretboardView.drawScale(scale);
 	pianoView.drawScale(scale);
