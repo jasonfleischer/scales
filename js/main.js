@@ -245,7 +245,6 @@ function windowResizedEnd(){
 }
 
 function updateUI() {
-console.log('ghbnjkml')
 
 	let note = musicKit.all_notes[model.selected_root_note];
 	let scale = new musicKit.Scale(note, model.selected_scale_type);
