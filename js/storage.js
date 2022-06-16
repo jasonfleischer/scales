@@ -5,6 +5,7 @@ storage.load = function(){
 	model.selected_scale_type = storage.getSelectedScaleType("Major pentatonic");
 	model.show_piano = storage.get_show_piano(true);
 	model.show_guitar = storage.get_show_guitar(true);
+	model.show_guitar_labels = storage.get_show_guitar_labels(false);
 };
 
 storage.SELECTED_NOTE = "SCALE_SELECTED_NOTE";
@@ -39,6 +40,15 @@ storage.get_show_guitar = function(default_value){
 };
 storage.set_show_guitar = function(value){
 	localStorage.setItem(storage.SHOW_GUITAR, value);
+};
+
+storage.SHOW_GUITAR_LABELS = "SHOW_GUITAR_LABELS";
+storage.get_show_guitar_labels = function(default_value){
+	var value = storage.get(storage.SHOW_GUITAR_LABELS, default_value);
+	return Boolean(value === "true" || value === true);
+};
+storage.set_show_guitar_labels = function(value){
+	localStorage.setItem(storage.SHOW_GUITAR_LABELS, value);
 };
 
 storage.get = function(key, default_value) {

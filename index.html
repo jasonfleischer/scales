@@ -41,6 +41,13 @@
 		<article>
 			<table>
 				<tr>
+					<button id="random_button">Generate Random Scale</button>
+				</tr>
+				<tr>
+					<td >Structure</td>
+					<td id="scale_structure"></td>
+				</tr>
+				<tr>
 					<td id="note_type">Root Note</td>
 					<td><select id="note_type_select"></select></td>
 				</tr>
@@ -48,25 +55,14 @@
 					<td id="scale_type">Scale Type</td>
 					<td><select id="scale_type_select"></select></td>
 				</tr>
-				<tr>
-					<td >Structure</td>
-					<td id="scale_structure"></td>
-				</tr>
-			</table>
-		</article>		
-		<article>
-			<table>
-				<tr>
-					<button id="random_button">Random</button>
-				</tr>
+				
 			</table>
 		</article>
-
 		<article>
 			<table>
 				<tr>
 					<div id="show_piano" class="nav-toggle-item">
-						<span>Show Piano</span>
+						<span>Show Piano Keys</span>
 						<label id="show_piano_checkbox_switch" class="switch">
 							<input id="show_piano_checkbox" type="checkbox" checked=""/>
 							<span class="switch_track round" tabindex="0"></span>
@@ -75,9 +71,18 @@
 				</tr>
 				<tr>
 					<div id="show_guitar" class="nav-toggle-item">
-						<span>Show Guitar</span>
+						<span>Show Guitar Fretboard</span>
 						<label id="show_guitar_checkbox_switch" class="switch">
 							<input id="show_guitar_checkbox" type="checkbox" checked=""/>
+							<span class="switch_track round" tabindex="0"></span>
+						</label>
+					</div>
+				</tr>
+				<tr>
+					<div id="show_guitar_labels" class="nav-toggle-item">
+						<span>Show Guitar Note Labels</span>
+						<label id="show_guitar_labels_checkbox_switch" class="switch">
+							<input id="show_guitar_labels_checkbox" type="checkbox" checked=""/>
 							<span class="switch_track round" tabindex="0"></span>
 						</label>
 					</div>

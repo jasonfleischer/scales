@@ -197,6 +197,24 @@ function setupControls(){
 		});
 		$("show_guitar_checkbox_switch").checked = model.show_guitar;
 	}
+
+	setup_show_guitar_labels_switch();
+	function setup_show_guitar_labels_switch() {
+		$("show_guitar_labels").addEventListener("click", function(e){
+			$("show_guitar_labels_checkbox").click();
+		});
+		$("show_guitar_labels_checkbox_switch").addEventListener('keyup', function(e) {
+			if (event.code === 'Space' || event.code === 'Enter') $("guitar_labels_checkbox").click();
+		});
+		$("show_guitar_labels_checkbox").addEventListener("change", function(e){
+			var value = this.checked;
+			log.i("on show guitar labels change: " + value);
+			model.show_guitar_labels = value;
+			storage.set_show_guitar_labels(value);
+			updateUI();
+		});
+		$("show_guitar_labels_checkbox_switch").checked = model.show_guitar_labels;
+	}
 }
 
 
@@ -227,6 +245,8 @@ function windowResizedEnd(){
 }
 
 function updateUI() {
+console.log('ghbnjkml')
+
 	let note = musicKit.all_notes[model.selected_root_note];
 	let scale = new musicKit.Scale(note, model.selected_scale_type);
 
@@ -239,6 +259,9 @@ function updateUI() {
 	document.getElementById("show_guitar_checkbox").checked = model.show_guitar;
 	document.getElementById(fretboardView.id).style.display = model.show_guitar ? 'block': 'none'; 
 	
+	document.getElementById("show_guitar_labels_checkbox").checked = model.show_guitar_labels;
+	fretboardView.show_labels = model.show_guitar_labels;
+
 	fretboardView.drawScale(scale);
 	pianoView.drawScale(scale);
 }
