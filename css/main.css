@@ -104,3 +104,30 @@ strong {
     height: 25px;
     vertical-align: text-bottom
 }
+
+.nav-toggle-item {
+	color: var(--primary-font-color);
+	font-size: 15px;
+	height: var(--row-height);
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.nav-toggle-item span:first-child{
+	float: left;
+	height: 100%;
+	white-space: nowrap;
+	width: calc(100% - 150px);
+	text-align: left;
+	margin-left: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: var(--row-height);
+}
+.nav-toggle-item label{
+	margin-top: 7px;
+	position: relative;
+	margin-right: 15px;
+	pointer-events: none;
+}
