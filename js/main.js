@@ -267,7 +267,7 @@ function updateUI() {
 
 	updateUIContainingScales();
 	function updateUIContainingScales() {
-		let types = scale.getContainingScaleTypes(musicKit.all_notes);
+		let objects = scale.getContainingScaleTypeObjects(musicKit.all_notes);
 
 		const removeChildren = (parent) => {
 		    while (parent.lastChild) {
@@ -277,28 +277,27 @@ function updateUI() {
 		removeChildren($('containing_scales'));
 
 		var i;
-		for(let i = 0; i < types.length; i++){
-			let type = types[i];
+		for(let i = 0; i < objects.length; i++){
+			let obj = objects[i];
 
 			let button = document.createElement('button');
-			button.innerHTML = type[0].note_name.type + " " + type[1];
-			button.style.backgroundColor = type[0].note_name.color;
+			button.innerHTML = obj.note.note_name.type + " " + obj.scale_type;
+			button.style.backgroundColor = obj.note.note_name.color;
 			button.classList.add("containing_scale_button");
 
 			button.addEventListener("click", function(event){
 
-				var midiValue = type[0].midi_value;
-				var scale_type = type[1];
-				var key = type[2];
+				var midiValue = note_name_to_midi_value_map[obj.note.note_name.type]
+				var key = obj.scale_type_key;
 
 				model.selected_root_note = midiValue;
-				model.selected_scale_type = scale_type;
+				model.selected_scale_type = musicKit.Scale.TYPE[key];
 
 				$("note_type_select").value = midiValue;
-				$("scale_type_select").value = scale_type;
+				$("scale_type_select").value = model.selected_scale_type;
 
 				storage.setSelectedNote(midiValue);
-				storage.setSelectedScaleType(scale_type);
+				storage.setSelectedScaleType(model.selected_scale_type);
 				updateUI();
 			});
 
