@@ -6,6 +6,7 @@ storage.load = function(){
 	model.show_piano = storage.get_show_piano(true);
 	model.show_guitar = storage.get_show_guitar(true);
 	model.show_guitar_labels = storage.get_show_guitar_labels(false);
+	model.show_containing_scales = storage.get_show_containing_scales(true);
 };
 
 storage.SELECTED_NOTE = "SCALE_SELECTED_NOTE";
@@ -49,6 +50,15 @@ storage.get_show_guitar_labels = function(default_value){
 };
 storage.set_show_guitar_labels = function(value){
 	localStorage.setItem(storage.SHOW_GUITAR_LABELS, value);
+};
+
+storage.SHOW_CONTAINING_SCALES = "SHOW_CONTAINING_SCALES";
+storage.get_show_containing_scales = function(default_value){
+	var value = storage.get(storage.SHOW_CONTAINING_SCALES, default_value);
+	return Boolean(value === "true" || value === true);
+};
+storage.set_show_containing_scales = function(value){
+	localStorage.setItem(storage.SHOW_CONTAINING_SCALES, value);
 };
 
 storage.get = function(key, default_value) {

@@ -43,20 +43,6 @@ const fretboardView = fretboardKit({
 	darkMode: true
 });
 
-// add a midi listener
-/*new musicKit.MidiListener(
-	function (midiValue, channel, velocity) { // note on
-		let note = musicKit.all_notes[midiValue];
-		let color = note.note_name.is_sharp_or_flat ? "#777": "#aaa";
-		startNote(note.frequency);
-		pianoView.drawNoteWithColor(note, color);
-	},
-	function (midiValue, channel, velocity) { // note off
-		let note = musicKit.all_notes[midiValue];
-		startNote(note.frequency);
-		pianoView.clearNote(note);
-	});*/
-
 kofi = function(){
 	window.open("https://ko-fi.com/jasonfleischer", "_blank");
 }
@@ -78,11 +64,9 @@ init = function() {
 		install.showAlert();
 	}
 
-	//model.note_range = musicKit.guitar_range;
 	setupControls();
 	windowResizedEnd();
 	updateUI();
-
 }
 
 function setupControls(){
@@ -161,14 +145,13 @@ function setupControls(){
 		});
 	}
 
-
 	setup_show_piano_switch();
 	function setup_show_piano_switch() {
 		$("show_piano").addEventListener("click", function(e){
 			$("show_piano_checkbox").click();
 		});
 		$("show_piano_checkbox_switch").addEventListener('keyup', function(e) {
-			if (event.code === 'Space' || event.code === 'Enter') $("piano_checkbox").click();
+			if (event.code === 'Space' || event.code === 'Enter') $("show_piano_checkbox").click();
 		});
 		$("show_piano_checkbox").addEventListener("change", function(e){
 			var value = this.checked;
@@ -177,7 +160,7 @@ function setupControls(){
 			storage.set_show_piano(value);
 			updateUI();
 		});
-		$("show_piano_checkbox_switch").checked = model.show_piano;
+		$("show_piano_checkbox").checked = model.show_piano;
 	}
 
 	setup_show_guitar_switch();
@@ -186,7 +169,7 @@ function setupControls(){
 			$("show_guitar_checkbox").click();
 		});
 		$("show_guitar_checkbox_switch").addEventListener('keyup', function(e) {
-			if (event.code === 'Space' || event.code === 'Enter') $("guitar_checkbox").click();
+			if (event.code === 'Space' || event.code === 'Enter') $("show_guitar_checkbox").click();
 		});
 		$("show_guitar_checkbox").addEventListener("change", function(e){
 			var value = this.checked;
@@ -195,7 +178,7 @@ function setupControls(){
 			storage.set_show_guitar(value);
 			updateUI();
 		});
-		$("show_guitar_checkbox_switch").checked = model.show_guitar;
+		$("show_guitar_checkbox").checked = model.show_guitar;
 	}
 
 	setup_show_guitar_labels_switch();
@@ -204,7 +187,7 @@ function setupControls(){
 			$("show_guitar_labels_checkbox").click();
 		});
 		$("show_guitar_labels_checkbox_switch").addEventListener('keyup', function(e) {
-			if (event.code === 'Space' || event.code === 'Enter') $("guitar_labels_checkbox").click();
+			if (event.code === 'Space' || event.code === 'Enter') $("show_guitar_labels_checkbox").click();
 		});
 		$("show_guitar_labels_checkbox").addEventListener("change", function(e){
 			var value = this.checked;
@@ -213,7 +196,25 @@ function setupControls(){
 			storage.set_show_guitar_labels(value);
 			updateUI();
 		});
-		$("show_guitar_labels_checkbox_switch").checked = model.show_guitar_labels;
+		$("show_guitar_labels_checkbox").checked = model.show_guitar_labels;
+	}
+
+	setup_show_containing_scales_switch();
+	function setup_show_containing_scales_switch() {
+		$("show_containing_scales").addEventListener("click", function(e){
+			$("show_containing_scales_checkbox").click();
+		});
+		$("show_containing_scales_checkbox_switch").addEventListener('keyup', function(e) {
+			if (event.code === 'Space' || event.code === 'Enter') $("show_containing_scales_checkbox").click();
+		});
+		$("show_containing_scales_checkbox").addEventListener("change", function(e){
+			var value = this.checked;
+			log.i("on show containing scales change: " + value);
+			model.show_containing_scales = value;
+			storage.set_show_containing_scales(value);
+			updateUI();
+		});
+		$("show_containing_scales_checkbox").checked = model.show_containing_scales;
 	}
 }
 
@@ -252,19 +253,62 @@ function updateUI() {
 	$("scale_structure").innerHTML = scale.getLabels().toString().replaceAll(',', ' ');
 	$("page_name").innerHTML = scale.toString()
 
-	document.getElementById("show_piano_checkbox").checked = model.show_piano;
-	document.getElementById(pianoView.id).style.display = model.show_piano ? 'block': 'none'; 
+	$(pianoView.id).style.display = model.show_piano ? 'block': 'none'; 
 
-	document.getElementById("show_guitar_checkbox").checked = model.show_guitar;
-	document.getElementById(fretboardView.id).style.display = model.show_guitar ? 'block': 'none'; 
+	$(fretboardView.id).style.display = model.show_guitar ? 'block': 'none'; 
 	
-	document.getElementById("show_guitar_labels_checkbox").checked = model.show_guitar_labels;
 	fretboardView.show_labels = model.show_guitar_labels;
-	document.getElementById("show_guitar_labels").style.display = model.show_guitar ? 'block': 'none';
+	$("show_guitar_labels").style.display = model.show_guitar ? 'block': 'none';
+
+	$("containing_scales").style.display = model.show_containing_scales ? 'block': 'none';
 
 	fretboardView.drawScale(scale);
 	pianoView.drawScale(scale);
+
+	updateUIContainingScales();
+	function updateUIContainingScales() {
+		let types = scale.getContainingScaleTypes(musicKit.all_notes);
+
+		const removeChildren = (parent) => {
+		    while (parent.lastChild) {
+		        parent.removeChild(parent.lastChild);
+		    }
+		};
+		removeChildren($('containing_scales'));
+
+		var i;
+		for(let i = 0; i < types.length; i++){
+			let type = types[i];
+
+			let button = document.createElement('button');
+			button.innerHTML = type[0].note_name.type + " " + type[1];
+			button.style.backgroundColor = type[0].note_name.color;
+			button.classList.add("containing_scale_button");
+
+			button.addEventListener("click", function(event){
+
+				var midiValue = type[0].midi_value;
+				var scale_type = type[1];
+				var key = type[2];
+
+				model.selected_root_note = midiValue;
+				model.selected_scale_type = scale_type;
+
+				$("note_type_select").value = midiValue;
+				$("scale_type_select").value = scale_type;
+
+				storage.setSelectedNote(midiValue);
+				storage.setSelectedScaleType(scale_type);
+				updateUI();
+			});
+
+			$("containing_scales").appendChild(button);
+		}
+	}
 }
+
+
+
 
 
 

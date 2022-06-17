@@ -36,3 +36,12 @@ button.selected {
     color: var(--secondary-background-color);
     background-color: var(--primary-font-color);
 }
+
+.containing_scale_button {
+    height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid var(--secondary-background-color);
+    color: var(--secondary-background-color);
+    margin: 0px;
+}

@@ -36,6 +36,7 @@
 	<main>
 		<div id="piano"></div>
 		<div id="fretboard"></div>
+		<div id="containing_scales"></div>
 	</main>
 	<aside>
 		<article>
@@ -61,7 +62,7 @@
 		<article>
 			<table>
 				<tr>
-					<div id="show_piano" class="nav-toggle-item">
+					<div id="show_piano" class="checkbox-row">
 						<span>Show Piano Keys</span>
 						<label id="show_piano_checkbox_switch" class="switch">
 							<input id="show_piano_checkbox" type="checkbox" checked=""/>
@@ -70,7 +71,7 @@
 					</div>
 				</tr>
 				<tr>
-					<div id="show_guitar" class="nav-toggle-item">
+					<div id="show_guitar" class="checkbox-row">
 						<span>Show Guitar Fretboard</span>
 						<label id="show_guitar_checkbox_switch" class="switch">
 							<input id="show_guitar_checkbox" type="checkbox" checked=""/>
@@ -79,10 +80,19 @@
 					</div>
 				</tr>
 				<tr>
-					<div id="show_guitar_labels" class="nav-toggle-item">
+					<div id="show_guitar_labels" class="checkbox-row">
 						<span>Show Guitar Note Labels</span>
 						<label id="show_guitar_labels_checkbox_switch" class="switch">
 							<input id="show_guitar_labels_checkbox" type="checkbox" checked=""/>
+							<span class="switch_track round" tabindex="0"></span>
+						</label>
+					</div>
+				</tr>
+				<tr>
+					<div id="show_containing_scales" class="checkbox-row">
+						<span>Show Containing Scales</span>
+						<label id="show_containing_scales_checkbox_switch" class="switch">
+							<input id="show_containing_scales_checkbox" type="checkbox" checked=""/>
 							<span class="switch_track round" tabindex="0"></span>
 						</label>
 					</div>
