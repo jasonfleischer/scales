@@ -276,6 +276,8 @@ function updateUI() {
 		};
 		removeChildren($('containing_scales'));
 
+		if(objects.length<2) return;
+
 		var i;
 		for(let i = 0; i < objects.length; i++){
 			let obj = objects[i];
