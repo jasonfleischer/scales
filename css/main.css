@@ -96,6 +96,7 @@ strong {
 	margin-top: 5px;
 	margin-right: 15px;
 	margin-left: 15px;
+	max-width: 1000px;
 }
 
 #random_button {
