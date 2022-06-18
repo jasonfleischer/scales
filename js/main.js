@@ -302,6 +302,10 @@ function updateUI() {
 				storage.setSelectedScaleType(model.selected_scale_type);
 				updateUI();
 
+				let queryParams = new URLSearchParams(window.location.search);
+				queryParams.set('value', 'tst2');
+				queryParams.set('scale_type', key);
+
 				var search_params = url.searchParams;
 				search_params.set('value', 'tst');
 				search_params.set('scale_type', key);
