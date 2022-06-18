@@ -301,6 +301,11 @@ function updateUI() {
 				storage.setSelectedNote(midiValue);
 				storage.setSelectedScaleType(model.selected_scale_type);
 				updateUI();
+
+				var search_params = url.searchParams;
+				search_params.set('value', midiValue);
+				search_params.set('scale_type', key);
+
 			});
 
 			$("containing_scales").appendChild(button);
