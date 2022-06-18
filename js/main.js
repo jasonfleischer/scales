@@ -306,13 +306,6 @@ function updateUI() {
 				queryParams.set('value', 'tst2');
 				queryParams.set('scale_type', key);
 
-				var search_params = url.searchParams;
-				search_params.set('value', 'tst');
-				search_params.set('scale_type', key);
-
-				//search_params.append('value', midiValue);
-				//search_params.append('scale_type', key);
-
 			});
 
 			$("containing_scales").appendChild(button);
