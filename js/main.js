@@ -303,8 +303,11 @@ function updateUI() {
 				updateUI();
 
 				var search_params = url.searchParams;
-				search_params.set('value', midiValue);
-				search_params.set('scale_type', key);
+				//search_params.set('value', midiValue);
+				//search_params.set('scale_type', key);
+
+				search_params.append('value', midiValue);
+				search_params.append('scale_type', key);
 
 			});
 
