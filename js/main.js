@@ -254,8 +254,27 @@ function updateUI() {
 	let note = musicKit.all_notes[model.selected_root_note];
 	let scale = new musicKit.Scale(note, model.selected_scale_type);
 
+	let note_names = scale.getProperNoteNames(musicKit.all_notes, musicKit.all_key_signatures);
+
+	function getProperNoteString(note, note_names){
+		return note.note_name.type;
+		/*if(note.note_name.is_sharp_or_flat){
+			var i;
+			for(i=0; i<note_names.length; i++){
+				if(note.note_name.sharp_name == note_names[i] ||
+					note.note_name.flat_name == note_names[i]){
+					return note_names[i]
+				}
+			}
+			return note.note_name.sharp_name;
+		} else {
+			return note.note_name.type;
+		}*/
+	}
+
 	$("scale_structure").innerHTML = scale.getLabels().toString().replaceAll(',', ' ');
-	$("page_name").innerHTML = scale.toString()
+	$("musical_notes").innerHTML = note_names.toString().replaceAll(',', ', ');
+	$("page_name").innerHTML = getProperNoteString(scale.root_note, note_names) + " " + scale.type;
 
 	$(pianoView.id).style.display = model.show_piano ? 'block': 'none'; 
 
@@ -286,9 +305,12 @@ function updateUI() {
 		var i;
 		for(let i = 0; i < objects.length; i++){
 			let obj = objects[i];
+			let properNoteName = getProperNoteString(obj.note, note_names);
 
 			let button = document.createElement('button');
-			button.innerHTML = obj.note.note_name.type + " " + obj.scale_type;
+
+			
+			button.innerHTML = properNoteName + " " + obj.scale_type;
 			button.style.backgroundColor = obj.note.note_name.color;
 			button.classList.add("containing_scale_button");
 
@@ -354,9 +376,10 @@ function updateUI() {
 		for(let i = 0; i < model.history.length; i++){
 
 			let obj =  model.history[i];
+			let properNoteName = getProperNoteString(obj.note, note_names);
 
 			let button = document.createElement('button');
-			button.innerHTML = obj.note.note_name.type + " " + obj.scale_type + (musicKit.Scale.getNoteSequence(obj.scale_type).length > 3 ? " >" : "");
+			button.innerHTML = properNoteName + " " + obj.scale_type + (musicKit.Scale.getNoteSequence(obj.scale_type).length > 3 ? " >" : "");
 			button.style.color = obj.note.note_name.color;
 			button.classList.add("history_breabcrumb_item");
 
