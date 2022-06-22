@@ -4,5 +4,6 @@ model = {
 	show_guitar: true,
 	show_piano: true,
 	show_guitar_labels: false,
-	show_containing_scales: true
+	show_containing_scales: true,
+	history: []
 }

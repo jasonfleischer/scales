@@ -90,7 +90,7 @@ strong {
 	margin-top: 10px;
 }
 
-#containing_scales {
+#containing_scales, #history_breadcrumb {
 	display: flex;
 	flex-wrap: wrap;
 	padding-top: 5px;

@@ -91,6 +91,7 @@ function setupControls(){
 		}
 		select.oninput = function() {
 			model.selected_root_note = parseInt(this.value);
+			model.history = [];
 			storage.setSelectedNote(model.selected_root_note);
 			updateUI();
 		}
@@ -117,6 +118,7 @@ function setupControls(){
 
 		select.oninput = function() {
 			model.selected_scale_type = this.value;
+			model.history = [];
 			storage.setSelectedScaleType(model.selected_scale_type);
 			updateUI();
 		}
@@ -135,6 +137,8 @@ function setupControls(){
 			});
 			let scale_type = scaleTypes[randomInteger(0, scaleTypes.length - 1)];
 			model.selected_scale_type = scale_type;
+
+			model.history = [];
 
 			$("note_type_select").value = midiValue;
 			$("scale_type_select").value = scale_type;
@@ -261,6 +265,7 @@ function updateUI() {
 	$("show_guitar_labels").style.display = model.show_guitar ? 'block': 'none';
 
 	$("containing_scales").style.display = model.show_containing_scales ? 'block': 'none';
+	$("history_breadcrumb").style.display = model.show_containing_scales ? 'block': 'none';
 
 	fretboardView.drawScale(scale);
 	pianoView.drawScale(scale);
@@ -290,25 +295,88 @@ function updateUI() {
 			button.addEventListener("click", function(event){
 
 				var midiValue = note_name_to_midi_value_map[obj.note.note_name.type]
-				var key = obj.scale_type_key;
 
 				model.selected_root_note = midiValue;
-				model.selected_scale_type = musicKit.Scale.TYPE[key];
+				model.selected_scale_type = obj.scale_type;
 
 				$("note_type_select").value = midiValue;
-				$("scale_type_select").value = model.selected_scale_type;
+				$("scale_type_select").value = obj.scale_type;
 
 				storage.setSelectedNote(midiValue);
-				storage.setSelectedScaleType(model.selected_scale_type);
+				storage.setSelectedScaleType(obj.scale_type);
+
+				let objNoteSeqLength = musicKit.Scale.getNoteSequence(obj.scale_type).length;;
+				let currNoteSeqLength = scale.note_sequence.length;
+				if(model.history.length == 0){
+					if (currNoteSeqLength != objNoteSeqLength){
+						model.history.push({note: note, scale_type: scale.type});
+					}
+					model.history.push({note: obj.note, scale_type: obj.scale_type});
+				}else {
+
+					var replacedHistoryItem = false;
+					const historyLength = model.history.length;
+					var i;
+					for(i = 0; i < historyLength; i++) {
+						if (replacedHistoryItem) {
+							model.history.pop();
+						} else {
+							let historyItem = model.history[i];
+							let historyItemNoteSeqLength = musicKit.Scale.getNoteSequence(historyItem.scale_type).length;
+							if (objNoteSeqLength >= historyItemNoteSeqLength){
+								model.history[i] = {note: obj.note, scale_type: obj.scale_type};
+								replacedHistoryItem = true;
+							}
+						}
+					}
+					if(!replacedHistoryItem){
+						model.history.push({note: obj.note, scale_type: obj.scale_type});
+					}
+				}
 				updateUI();
-
-				let queryParams = new URLSearchParams(window.location.search);
-				queryParams.set('value', 'tst2');
-				queryParams.set('scale_type', key);
-
 			});
 
 			$("containing_scales").appendChild(button);
+		}
+	}
+	updateUIHistory();
+	function updateUIHistory() {
+
+
+		const removeChildren = (parent) => {
+		    while (parent.lastChild) {
+		        parent.removeChild(parent.lastChild);
+		    }
+		};
+		removeChildren($('history_breadcrumb'));
+	
+		var i;
+		for(let i = 0; i < model.history.length; i++){
+
+			let obj =  model.history[i];
+
+			let button = document.createElement('button');
+			button.innerHTML = obj.note.note_name.type + " " + obj.scale_type + (musicKit.Scale.getNoteSequence(obj.scale_type).length > 3 ? " >" : "");
+			button.style.color = obj.note.note_name.color;
+			button.classList.add("history_breabcrumb_item");
+
+			button.addEventListener("click", function(event){
+
+				var midiValue = note_name_to_midi_value_map[obj.note.note_name.type];
+
+				model.selected_root_note = midiValue;
+				model.selected_scale_type = obj.scale_type;
+
+				$("note_type_select").value = midiValue;
+				$("scale_type_select").value = obj.scale_type;
+
+				storage.setSelectedNote(midiValue);
+				storage.setSelectedScaleType(obj.scale_type);
+
+				updateUI();
+			});
+
+			$("history_breadcrumb").appendChild(button);
 		}
 	}
 }
