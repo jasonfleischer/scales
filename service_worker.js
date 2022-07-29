@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v1.1';
+const CACHE_NAME = 'v2';
 const CACHE = [
         '/scales/index.html',
         '/scales/css/bundle.css',
